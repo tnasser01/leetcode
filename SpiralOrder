@@ -32,6 +32,7 @@ class Solution {
         int right = matrix[0].length-1;
         
         //Traversing in a spiral order, we add each element to the list
+        //We break out of the while loop when the length of the current direction's traversal is 0
         while(true) {
             for(int i=left; i <=right; i++) 
                 list.add(matrix[top][i]);            
