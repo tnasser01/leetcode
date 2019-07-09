@@ -1,0 +1,44 @@
+class Solution {
+    public  int numRookCaptures(char[][] board) {
+        boolean found = false;
+        int x = 0;
+        int y = 0;
+
+        for(int i=0; i < 8; i++) {
+            if(found == true) break;
+            for(int j=0; j < 8; j++) {
+                if(board[i][j] == 'R') {
+                    x = i;
+                    y = j;
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        char direction;
+
+        int num = rookDFS(x+1, y,  board,'l') +
+                rookDFS(x-1, y,board, 'r') +
+                rookDFS(x, y+1, board,'u') +
+                rookDFS(x, y-1,board, 'd');
+        return num;
+
+
+    }
+
+    public  int rookDFS(int x, int y, char[][] board, char dir) {
+
+        if(x < 0 || y < 0 || x > 7 || y > 7 || board[x][y] == 'B'  ) return 0;
+
+        if(board[x][y] == 'p' ) return 1;
+
+        if(dir == 'l') return rookDFS(x+1, y, board, 'l');
+        if(dir == 'r') return rookDFS(x-1, y, board, 'r');
+        if(dir == 'u') return rookDFS(x, y-1, board, 'u');
+        if(dir == 'd') return rookDFS(x, y+1, board, 'd');
+
+        return 0;
+
+    }
+}
