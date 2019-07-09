@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    int val;
+    boolean passed = true;
+    public boolean isUnivalTree(TreeNode root) {
+        val = root.val;
+        inorder(root);
+        return passed;
+    }
+    
+    public void inorder(TreeNode node) {
+        
+        if(node != null && passed == true) {
+            inorder(node.left);
+            if(node.val != val) {
+                passed = false;
+                return;
+            }
+            inorder(node.right);
+        }
+        
+    }
+}
